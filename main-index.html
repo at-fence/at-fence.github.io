@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="master.css">
+    <title></title>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var index = 1;
+        //1. 다음 contents로 넘기기 click으
+        $(".contents-img").click(function(){
+          $(this).parent(".index").fadeOut(250, function(){
+            if (index == '3') {
+              index = 1;
+              $("#index-1").fadeIn(250);
+            }
+            else{
+              $(this).next().fadeIn(250);
+              index += 1;
+            }
+          });
+          $(".scroll_down").fadeOut(250).fadeIn(250);
+          $("#details").hide();
+        });
+
+        // 2. contents 세부 설명 보기
+        // 추후 추가할 기능, 마우스 스크롤 발생 시 scroll down과 같은 기능 실행.
+        $(".scroll_down").on("click", function(){
+          $("#details").show(0, function(){
+            $(".index-detail").hide(0, function(){
+              $("#detail-"+index).show();
+            });
+          });
+
+          var scrollPosition = $("#details").offset();
+          $("html, body").animate({scrollTop:scrollPosition.top },1500);
+        });
+
+        //3.위로 올라가기
+        $(".scroll_up").click(function(){
+          $("#details").slideUp(1500);
+        });
+      });
+    </script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div id="title">
+        <div class="header">
+          <p class="header-name">SONG, JINKYEONG</p>
+          <p class="header-name" style="font-size:14px;">82+1032154462 / mit1259@naver.com</p>
+        </div>
+        <div class="contents">
+          <div class="index" id="index-1">
+            <div class="contents-img">
+              <img style="height : 100%;" src="img-title.png" alt="img">
+            </div>
+            <div class="contents-descript">
+              <p class="descript-text" >WEGE vol.3 / Book Design <br></p>
+            </div>
+          </div>
+
+          <div class="index" id="index-2" style="display:none;">
+            <div class="contents-img">
+              <img style="height : 100%;" src="img.jpg" alt="img">
+            </div>
+            <div class="contents-descript">
+              <p class="descript-text" >Critics Record vol.2 / Book Design <br></p>
+            </div>
+          </div>
+
+          <div class="index" id="index-3" style="display:none;">
+            <div class="contents-img">
+              <img style="height : 100%;" src="img2.jpg" alt="img">
+            </div>
+            <div class="contents-descript">
+              <p class="descript-text" >WEGE vol.3 / Book Design <br></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll_down">
+          <img style="height:100%;" src="scroll-down.svg" alt="scroll down">
+        </div>
+      </div>
+
+
+      <div id="details">
+        <div class="index-detail" id="detail-1">
+          <div class="detail-title">
+            <p style="margin-bottom:10px;"><br> WEGE vol.3</p>
+            <p style="font-size:14px;">Book Design</p>
+          </div>
+          <div class="detail-img">
+            <img class="detail-img" src="./content/1/1.png" alt="1">
+          </div>
+          <div class="detail-img">
+            <img class="detail-img" src="./content/1/2.png" alt="2">
+          </div>
+          <div class="detail-img">
+            <img class="detail-img" src="./content/1/3.png" alt="3">
+          </div>
+          <div class="detail-img">
+            <img class="detail-img" src="./content/1/4.png" alt="4">
+          </div>
+        </div>
+
+        <div class="index-detail" id="detail-2">
+          <div class="detail-title">
+            <p style="margin-bottom:10px;"><br> Critics Record vol.2</p>
+            <p style="font-size:14px;">Book Design</p>
+          </div>
+          <div class="detail-img">
+            <img class="detail-img" src="5.png" alt=" 1">
+          </div>
+          <div class="detail-img">
+            <img class="detail-img" src="6.png" alt=" 1">
+          </div>
+          <div class="detail-img">
+            <img class="detail-img" src="7.png" alt=" 1">
+          </div>
+        </div>
+
+        <div class="scroll_up">
+          <img style="height:100%;" src="scroll-up.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
